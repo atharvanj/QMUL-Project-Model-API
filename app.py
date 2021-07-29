@@ -14,7 +14,7 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.models import model_from_json
 import tensorflow.keras.losses
 import dropbox
-
+import os
 import h5py
 
 # Compatible with tensorflow backend
@@ -25,7 +25,7 @@ app = Flask(__name__, template_folder='Template')
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 TOKEN = 'rpzSI2olZbMAAAAAAAAAAXN3DalttE8YrVVmpHr_sY39B49Ssjwh6VHHi-NEYYjj'
-path = 'Model'
+path = os.path.join("./Model/","complete_data_xception_model.h5")
 
 
 
