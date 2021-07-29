@@ -8,13 +8,13 @@ import PIL
 from PIL import Image
 from tensorflow import keras
 import numpy as np
-from tensorflow.keras.applications import Xception
+from tensorflow.keras.applications import EfficientNetB5
 import tensorflow as tf
 from tensorflow.keras.models import load_model
 from tensorflow.keras.models import model_from_json
 import tensorflow.keras.losses
-from tensorflow.keras import backend as K
 import dropbox
+
 import h5py
 
 # Compatible with tensorflow backend
@@ -25,15 +25,9 @@ app = Flask(__name__, template_folder='Template')
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 TOKEN = 'rpzSI2olZbMAAAAAAAAAAXN3DalttE8YrVVmpHr_sY39B49Ssjwh6VHHi-NEYYjj'
-path = 'Model/complete_data_xception_model.h5'
+path = 'Model'
 
 
-def focal_loss(gamma=2., alpha=.25):
-	def focal_loss_fixed(y_true, y_pred):
-		pt_1 = tf.where(tf.equal(y_true, 1), y_pred, tf.ones_like(y_pred))
-		pt_0 = tf.where(tf.equal(y_true, 0), y_pred, tf.zeros_like(y_pred))
-		return -K.mean(alpha * K.pow(1. - pt_1, gamma) * K.log(pt_1)) - K.mean((1 - alpha) * K.pow(pt_0, gamma) * K.log(1. - pt_0))
-	return focal_loss_fixed
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -61,7 +55,7 @@ def uploadFile():
         img = np.array(img)
         img = img/255.0
         img = img[np.newaxis, ...]
-        model = load_model(path, custom_objects={'focal_loss_fixed': focal_loss()})
+        model = load_model(path)
         #model = model_from_json(open("Model/complete_data_efficient_model_2.h5"))
         # model.load_weights("Model/complete_data_efficient_weights_2.h5")
         prob = model.predict(img)
