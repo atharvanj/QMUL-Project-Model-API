@@ -25,7 +25,7 @@ app = Flask(__name__, template_folder='Template')
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 TOKEN = 'rpzSI2olZbMAAAAAAAAAAXN3DalttE8YrVVmpHr_sY39B49Ssjwh6VHHi-NEYYjj'
-path = os.path.join("./Model/","complete_data_xception_model.h5")
+path = '/app/Model/complete_data_xception_model.h5'
 
 
 
@@ -55,16 +55,17 @@ def uploadFile():
         img = np.array(img)
         img = img/255.0
         img = img[np.newaxis, ...]
-        # model = load_model(path)
+        model = load_model(path)
         #model = model_from_json(open("Model/complete_data_efficient_model_2.h5"))
         # model.load_weights("Model/complete_data_efficient_weights_2.h5")
-        # prob = model.predict(img)
-        # result = prob
+        prob = model.predict(img)
+        result = prob
         # else:
         #     result = 'Unsupported file format'
-        directory = os.path.join(os.getcwd(),"Model")
-        os.chdir(directory)
-        encstring = json.dumps(str(os.listdir()) + str(os.getcwd()))
+        # directory = os.path.join(os.getcwd(),"Model")
+        # os.chdir(directory)
+        # encstring = json.dumps(str(os.listdir()) + str(os.getcwd()))
+        encstring = json.dumps(str(result))
         return flask.redirect(url_for('viewBase64', encstring = encstring))
     
     print("debug check")
