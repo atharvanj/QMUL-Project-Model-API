@@ -55,7 +55,7 @@ def uploadFile():
         img = np.array(img)
         img = img/255.0
         img = img[np.newaxis, ...]
-        model = load_model(path)
+        # model = load_model(path)
         #model = model_from_json(open("Model/complete_data_efficient_model_2.h5"))
         # model.load_weights("Model/complete_data_efficient_weights_2.h5")
         prob = model.predict(img)
