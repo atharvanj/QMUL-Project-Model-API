@@ -1,0 +1,5 @@
+*.jpg
+*.ipynb
+complete_data_efficient_weights_2.h5
+*.md
+*.gitattributes
