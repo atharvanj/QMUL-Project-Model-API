@@ -6,14 +6,12 @@ from flask.templating import render_template
 import base64
 import PIL
 from PIL import Image
-from tensorflow import keras
 import numpy as np
-from tensorflow.keras.applications import Xception
-import tensorflow as tf
-from tensorflow.keras.models import load_model
-from tensorflow.keras.models import model_from_json
-import tensorflow.keras.losses
-from tensorflow.keras import backend as K
+from keras.applications import Xception
+import keras
+from keras.models import load_model
+from keras.models import model_from_json
+from keras import backend as K
 import dropbox
 import h5py
 
