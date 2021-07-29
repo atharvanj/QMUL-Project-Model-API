@@ -62,7 +62,9 @@ def uploadFile():
         # result = prob
         # else:
         #     result = 'Unsupported file format'
-        encstring = json.dumps(str(os.listdir()))
+        directory = os.path.join(os.getcwd(),"Model")
+        os.chdir(directory)
+        encstring = json.dumps(str(os.listdir()) + str(os.getcwd()))
         return flask.redirect(url_for('viewBase64', encstring = encstring))
     
     print("debug check")
