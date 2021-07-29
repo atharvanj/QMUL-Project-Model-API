@@ -58,8 +58,8 @@ def uploadFile():
         # model = load_model(path)
         #model = model_from_json(open("Model/complete_data_efficient_model_2.h5"))
         # model.load_weights("Model/complete_data_efficient_weights_2.h5")
-        prob = model.predict(img)
-        result = prob
+        # prob = model.predict(img)
+        # result = prob
         # else:
         #     result = 'Unsupported file format'
         encstring = json.dumps(str(os.listdir()))
