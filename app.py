@@ -15,7 +15,6 @@ from tensorflow.keras.models import model_from_json
 import tensorflow.keras.losses
 from tensorflow.keras import backend as K
 import dropbox
-import os
 import h5py
 
 # Compatible with tensorflow backend
