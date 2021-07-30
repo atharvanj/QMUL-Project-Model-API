@@ -37,11 +37,11 @@ def allowed_file(filename):
 
 @app.route('/', methods=['GET', 'POST'])
 def uploadFile():
-    if flask.request.method == 'GET':
-        # Just render the initial form, to get input
-        return(flask.render_template('index.html')), 200
+    # if flask.request.method == 'GET':
+    #     # Just render the initial form, to get input
+    #     return(flask.render_template('index.html')), 200
     
-    if request.method == 'POST':
+    if request.method == 'GET':
         # check if the post request has the file part
         dbx = dropbox.Dropbox(TOKEN)
         metadata, files = dbx.files_download('/userPhoto.jpg')
@@ -69,7 +69,7 @@ def uploadFile():
         # encstring = json.dumps(str(os.listdir()) + str(os.getcwd()))
         # encstring = json.dumps(str(path) + str(my_file.is_dir()) + str(my_file.exists()))
         encstring = json.dumps(str(result))
-        return flask.redirect(url_for('viewBase64', encstring = encstring))
+        return jsonify(encstring)
     
     print("debug check")
 
