@@ -59,7 +59,8 @@ def uploadFile():
         img = img/255.0
         img = img[np.newaxis, ...]
         os.chdir(pathchange)
-        model = load_model(str(path))
+        with h5py.File('complete_data_xception_model.h5') as hdf:
+            model = load_model(hdf)
         # #model = model_from_json(open("Model/complete_data_efficient_model_2.h5"))
         # # model.load_weights("Model/complete_data_efficient_weights_2.h5")
         prob = model.predict(img)
