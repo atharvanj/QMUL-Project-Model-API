@@ -26,7 +26,8 @@ app = Flask(__name__, template_folder='Template')
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 TOKEN = 'rpzSI2olZbMAAAAAAAAAAXN3DalttE8YrVVmpHr_sY39B49Ssjwh6VHHi-NEYYjj'
-path = os.path.join(os.getcwd(), "Model", "complete_data_xception_model.h5")
+pathchange = os.path.join(os.getcwd(), "Model")
+path = 'complete_data_xception_model.h5'
 my_file = Path(path)
 
 
@@ -57,6 +58,7 @@ def uploadFile():
         img = np.array(img)
         img = img/255.0
         img = img[np.newaxis, ...]
+        os.chdir(pathchange)
         model = load_model(str(path))
         # #model = model_from_json(open("Model/complete_data_efficient_model_2.h5"))
         # # model.load_weights("Model/complete_data_efficient_weights_2.h5")
