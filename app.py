@@ -27,7 +27,7 @@ app = Flask(__name__, template_folder='Template')
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 TOKEN = 'rpzSI2olZbMAAAAAAAAAAXN3DalttE8YrVVmpHr_sY39B49Ssjwh6VHHi-NEYYjj'
 pathchange = os.path.join(os.getcwd(), "Model")
-path = "Model/complete_data_xception_model.h5"
+path = "Model/saved_model.h5"
 abs_path = os.path.abspath(path)
 my_file = Path(path)
 
