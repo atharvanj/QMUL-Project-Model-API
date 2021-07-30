@@ -8,7 +8,7 @@ import PIL
 from PIL import Image
 from tensorflow import keras
 import numpy as np
-from tensorflow.keras.applications import Xception
+from efficientnet.tfkeras import EfficientNetB5
 import tensorflow as tf
 from tensorflow.keras.models import load_model
 from tensorflow.keras.models import model_from_json
@@ -27,7 +27,7 @@ app = Flask(__name__, template_folder='Template')
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 TOKEN = 'rpzSI2olZbMAAAAAAAAAAXN3DalttE8YrVVmpHr_sY39B49Ssjwh6VHHi-NEYYjj'
 pathchange = os.path.join(os.getcwd(), "Model")
-path = 'Model'
+path = '.\Model\complete_data_xception_model.h5'
 my_file = Path(path)
 
 
@@ -59,8 +59,12 @@ def uploadFile():
         img = img/255.0
         img = img[np.newaxis, ...]
         # os.chdir(pathchange)
-        model = load_model(str(path))
-        # #model = model_from_json(open("Model/complete_data_efficient_model_2.h5"))
+        model = load_model(path)
+        # json_file = open(path, 'r')
+
+        # loaded_model_json = json_file.read()
+        # json_file.close()
+        # model = model_from_json(loaded_model_json)
         # # model.load_weights("Model/complete_data_efficient_weights_2.h5")
         prob = model.predict(img)
         result = prob
