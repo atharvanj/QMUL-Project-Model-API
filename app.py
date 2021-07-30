@@ -25,7 +25,7 @@ app = Flask(__name__, template_folder='Template')
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 TOKEN = 'rpzSI2olZbMAAAAAAAAAAXN3DalttE8YrVVmpHr_sY39B49Ssjwh6VHHi-NEYYjj'
-path = '/app/Model/complete_data_xception_model.h5'
+path = os.getcwd(
 
 
 
