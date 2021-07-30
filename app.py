@@ -16,6 +16,7 @@ import tensorflow.keras.losses
 import dropbox
 import os
 import h5py
+from pathlib import Path
 
 # Compatible with tensorflow backend
 
@@ -25,7 +26,8 @@ app = Flask(__name__, template_folder='Template')
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 TOKEN = 'rpzSI2olZbMAAAAAAAAAAXN3DalttE8YrVVmpHr_sY39B49Ssjwh6VHHi-NEYYjj'
-path = os.getcwd()
+path = os.path.join(os.getcwd(), "Model", "complete_data_xception_model.h5")
+my_file = Path(path)
 
 
 
@@ -65,7 +67,7 @@ def uploadFile():
         # directory = os.path.join(os.getcwd(),"Model")
         # os.chdir(directory)
         # encstring = json.dumps(str(os.listdir()) + str(os.getcwd()))
-        encstring = json.dumps(str(path))
+        encstring = json.dumps(str(path) + str(my_file.is_dir()) + str(my_file.exists()))
         return flask.redirect(url_for('viewBase64', encstring = encstring))
     
     print("debug check")
