@@ -8,7 +8,7 @@ import PIL
 from PIL import Image
 from tensorflow import keras
 import numpy as np
-from efficientnet.tfkeras import EfficientNetB5
+from tensorflow.keras.applications import EfficientNetB5
 import tensorflow as tf
 from tensorflow.keras.models import load_model
 from tensorflow.keras.models import model_from_json
