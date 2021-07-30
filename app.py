@@ -60,8 +60,7 @@ def uploadFile():
         img = img/255.0
         img = img[np.newaxis, ...]
         # os.chdir(pathchange)
-        with h5py.File(abs_path) as hdf:
-            model = load_model(hdf)
+        model = load_model(abs_path)
         # json_file = open(path, 'r')
 
         # loaded_model_json = json_file.read()
