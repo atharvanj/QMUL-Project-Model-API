@@ -28,6 +28,7 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 TOKEN = 'rpzSI2olZbMAAAAAAAAAAXN3DalttE8YrVVmpHr_sY39B49Ssjwh6VHHi-NEYYjj'
 pathchange = os.path.join(os.getcwd(), "Model")
 path = "Model/complete_data_xception_model.h5"
+abs_path = os.path.abspath(path)
 my_file = Path(path)
 
 
@@ -59,7 +60,7 @@ def uploadFile():
         img = img/255.0
         img = img[np.newaxis, ...]
         # os.chdir(pathchange)
-        model = load_model(path)
+        model = load_model(abs_path)
         # json_file = open(path, 'r')
 
         # loaded_model_json = json_file.read()
