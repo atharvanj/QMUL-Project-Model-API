@@ -27,8 +27,9 @@ app = Flask(__name__, template_folder='Template')
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 TOKEN = 'rpzSI2olZbMAAAAAAAAAAXN3DalttE8YrVVmpHr_sY39B49Ssjwh6VHHi-NEYYjj'
 pathchange = os.path.join(os.getcwd(), "Model")
-path = "Model/saved_model.h5"
+path = "/app"
 abs_path = os.path.abspath(path)
+rel_path = os.path.relpath(abs_path, path)
 my_file = Path(path)
 
 
@@ -60,7 +61,7 @@ def uploadFile():
         img = img/255.0
         img = img[np.newaxis, ...]
         # os.chdir(pathchange)
-        model = load_model(abs_path[1:])
+        model = load_model(rel_path)
         # json_file = open(path, 'r')
 
         # loaded_model_json = json_file.read()
