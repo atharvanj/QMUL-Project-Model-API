@@ -30,7 +30,7 @@ pathchange = os.path.join(os.getcwd(), "Model")
 path = "Model/saved_model.h5"
 short_path = "/app"
 abs_path = os.path.abspath(path)
-rel_path = os.path.relpath(abs_path, short_path)
+rel_path = os.path.relpath(abs_path)
 my_file = Path(path)
 
 
