@@ -27,9 +27,10 @@ app = Flask(__name__, template_folder='Template')
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 TOKEN = 'rpzSI2olZbMAAAAAAAAAAXN3DalttE8YrVVmpHr_sY39B49Ssjwh6VHHi-NEYYjj'
 pathchange = os.path.join(os.getcwd(), "Model")
-path = "/app"
+path = "Model/saved_model.h5"
+short_path = "/app"
 abs_path = os.path.abspath(path)
-rel_path = os.path.relpath(abs_path, path)
+rel_path = os.path.relpath(abs_path, short_path)
 my_file = Path(path)
 
 
