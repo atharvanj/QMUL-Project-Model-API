@@ -62,7 +62,7 @@ def uploadFile():
         img = img/255.0
         img = img[np.newaxis, ...]
         # os.chdir(pathchange)
-        model = load_model(rel_path)
+        model = load_model(path)
         # json_file = open(path, 'r')
 
         # loaded_model_json = json_file.read()
