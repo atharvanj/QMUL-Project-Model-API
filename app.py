@@ -17,7 +17,6 @@ import dropbox
 import os
 import h5py
 from pathlib import Path
-from random import random
 
 app = Flask(__name__, template_folder='Template')
 
@@ -44,15 +43,11 @@ def uploadFile():
         img = np.array(img)
         img = img/255.0
         img = img[np.newaxis, ...]
-        # model = load_model(path)
-        # prob = model.predict(img)
-        # result = prob
-        result = random()
-        while result > 0.5:
-            result = random()
+        model = load_model(path)
+        prob = model.predict(img)
+        result = prob
         encstring = json.dumps(str(result))
         return jsonify(encstring)    
 
 if __name__ == '__main__':
-    # Threaded option to enable multiple instances for multiple user access support
     app.run(threaded=True, port=5000, debug=True)
