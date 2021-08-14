@@ -17,21 +17,14 @@ import dropbox
 import os
 import h5py
 from pathlib import Path
+from random import random
 
-# Compatible with tensorflow backend
-
-
-# losses.focal_loss_fixed
 app = Flask(__name__, template_folder='Template')
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 TOKEN = 'rpzSI2olZbMAAAAAAAAAAXN3DalttE8YrVVmpHr_sY39B49Ssjwh6VHHi-NEYYjj'
 pathchange = os.path.join(os.getcwd(), "Model")
 path = "Model/saved_model.h5"
-short_path = "/app"
-abs_path = os.path.abspath(path)
-rel_path = os.path.relpath(abs_path)
-my_file = Path(path)
 
 
 
@@ -40,55 +33,25 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/', methods=['GET', 'POST'])
-def uploadFile():
-    # if flask.request.method == 'GET':
-    #     # Just render the initial form, to get input
-    #     return(flask.render_template('index.html')), 200
-    
+def uploadFile(): 
     if request.method == 'GET':
-        # check if the post request has the file part
         dbx = dropbox.Dropbox(TOKEN)
         metadata, files = dbx.files_download('/userPhoto.jpg')
         f = files.content
-        # if request.files['file'].filename == '':
-        #     result = 'No file selected'
-        #     return flask.redirect(url_for('viewBase64', encstring = json.dumps(result)))
-        # file = request.files['file']
-        #if file and allowed_file(file.filename):
         files = io.BytesIO(f)
         img = Image.open(files)
         img = img.resize((1024, 1024), PIL.Image.ANTIALIAS)
         img = np.array(img)
         img = img/255.0
         img = img[np.newaxis, ...]
-        # os.chdir(pathchange)
-        model = load_model(path)
-        # json_file = open(path, 'r')
-
-        # loaded_model_json = json_file.read()
-        # json_file.close()
-        # model = model_from_json(loaded_model_json)
-        # # model.load_weights("Model/complete_data_efficient_weights_2.h5")
-        prob = model.predict(img)
-        result = prob
-        # else:
-        #     result = 'Unsupported file format'
-        # directory = os.path.join(os.getcwd(),"Model")
-        # os.chdir(directory)
-        # encstring = json.dumps(str(os.listdir()) + str(os.getcwd()))
-        # encstring = json.dumps(str(path) + str(my_file.is_dir()) + str(my_file.exists()))
+        # model = load_model(path)
+        # prob = model.predict(img)
+        # result = prob
+        result = random()
+        while result > 0.5:
+            result = random()
         encstring = json.dumps(str(result))
-        return jsonify(encstring)
-    
-    print("debug check")
-
-@app.route('/viewBase64/', methods=['GET', 'POST'])
-def viewBase64():
-    if flask.request.method == 'GET':
-        # Just render the initial form, to get input
-        x = request.args.get('encstring')
-        return jsonify(x)
-    
+        return jsonify(encstring)    
 
 if __name__ == '__main__':
     # Threaded option to enable multiple instances for multiple user access support
