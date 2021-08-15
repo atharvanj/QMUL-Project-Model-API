@@ -39,7 +39,7 @@ def uploadFile():
         f = files.content
         files = io.BytesIO(f)
         img = Image.open(files)
-        img = img.resize((1024, 1024), PIL.Image.ANTIALIAS)
+        img = img.resize((512, 512), PIL.Image.ANTIALIAS)
         img = np.array(img)
         img = img/255.0
         img = img[np.newaxis, ...]
