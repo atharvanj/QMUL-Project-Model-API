@@ -21,7 +21,7 @@ from pathlib import Path
 app = Flask(__name__, template_folder='Template')
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
-TOKEN = 'rpzSI2olZbMAAAAAAAAAAXN3DalttE8YrVVmpHr_sY39B49Ssjwh6VHHi-NEYYjj'
+TOKEN = 'XXXX'
 pathchange = os.path.join(os.getcwd(), "Model")
 path = "Model/saved_model.h5"
 
